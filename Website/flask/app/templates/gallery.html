@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Gallery</title>
+</head>
+<body>
+    <h1>Gallery</h1>
+
+    <div style="display: flex; flex-wrap: wrap;">
+        {% for user in users %}
+        <div style="display: inline-block; margin: 10px;">
+            <img src="{{ url_for('get_image', user_id=user.id) }}" alt="{{ user.username }}" style="width: 200px; height: 200px;">
+            <p>{{ user.username }}</p>
+        </div>
+    {% endfor %}
+    
+    </div>
+</body>
+</html>

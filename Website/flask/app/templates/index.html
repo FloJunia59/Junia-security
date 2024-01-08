@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info</title>
+</head>
+<body>
+    <h1>Informations sur l'utilisateur</h1>
+    
+    {% if current_user.is_authenticated %}
+        <p>Bonjour, {{ current_user.username }}!</p>
+        <p>Email : {{ current_user.email }}</p>
+        
+        {% if current_user.image_data %}
+            <img src="{{ url_for('get_image', user_id=current_user.id) }}" alt="Image de l'utilisateur">
+        {% else %}
+            <p>L'utilisateur n'a pas d'image.</p>
+        {% endif %}
+        
+        <a href="{{ url_for('logout') }}"><button>Se déconnecter</button></a>
+            {% if encrypted_session_key and decrypted_session_key %}
+            <p>Clé chiffrée : {{ encrypted_session_key }}</p>
+            <p>Clé déchiffrée : {{ decrypted_session_key }}</p>
+            {% else %}
+                <p>La clé de session n'est pas disponible.</p>
+            {% endif %}
+    {% else %}
+        <p>Aucun utilisateur trouvé.</p>
+    {% endif %}
+
+    <a href="{{ url_for('gallery') }}"><button>Aller à la galerie</button></a>
+    <a href="{{ url_for('user_times') }}"><button>Liste utilisateur</button></a>
+    <form method="post" action="{{ url_for('add_users') }}">
+        <label for="num_users">Nombre d'utilisateurs :</label>
+        <input type="number" name="num_users" required>
+        <button type="submit">Ajouter</button>
+    </form>
+</body>
+</html>

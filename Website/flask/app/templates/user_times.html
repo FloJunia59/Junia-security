@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Times</title>
+</head>
+<body>
+    <h1>Temps de génération et de déchiffrement</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Encapsulation (s)</th>
+                <th>Décapsulation (s)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.generation_time }}</td>
+                    <td>{{ user.decryption_time }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>moyenne Encapsulation :{{average_encapsulation_time}}</p>
+    <p>moyenne Décapsulation :{{average_decapsulation_time}}</p>
+
+</body>
+</html>
